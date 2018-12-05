@@ -31,16 +31,16 @@
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      
+
     </script>
-    
+
     <div id="cerca_artista">
       <input type="text" id="ricerca"/>
       <input type="button" onclick="cercaArtista()" value="cerca"/>
     </div>
 
     <script id="oauth-template" type="text/x-handlebars-template">
-      
+
     </script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
@@ -50,17 +50,25 @@
         var valore = document.getElementById("ricerca").value;
 
         console.log(valore);
+        var info;
         $.ajax({
             url: 'https://api.spotify.com/v1/search',
             data: {
               type:"artist",
               q: valore,
+              limit:2,
+              dataType: 'json',
             },
             headers: {
               'Authorization': 'Bearer ' + access_token
             },
             success: function(response) {
               console.log(response);
+              /*if (response.d == true) {
+                    alert("You will now be redirected.");
+                    window.location = "//www.aspsnippets.com/";
+                }*/
+
             }
         });
       }
@@ -82,8 +90,8 @@
           }
           return hashParams;
         }
-        
-        
+
+
 
         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
