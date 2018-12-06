@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Example of the Authorization Code flow with Spotify</title>
+    <title>Music</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <style type="text/css">
       #login, #loggedin {
@@ -14,12 +14,14 @@
         width: 500px;
       }
     </style>
+
+    
   </head>
 
   <body>
     <div class="container">
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
+        <h1>Music</h1>
         <a href="/login" class="btn btn-primary">Log in with Spotify</a>
       </div>
       <div id="loggedin">
@@ -33,11 +35,52 @@
     <script id="user-profile-template" type="text/x-handlebars-template">
 
     </script>
-
-    <div id="cerca_artista">
-      <input type="text" id="ricerca"/>
-      <input type="button" onclick="cercaArtista()" value="cerca"/>
+    <div class="container" id="track">
+    <div class="row header-padding mb-5">
+      <h1>Cerca la tua canzone</h1>
+      <p>Metti il nome della canzone e clicca su "Cerca". 
+        <br>Poi, Clicca sulle immagini per ascoltare 30 secondi della canzone.
+        <br>Per maggiori Informazioni clicca su "Avanzate"</p>
+      <form id="search-form" class="search-row " style="margin-bottom: 20px;">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <input type="button" id="advanced-button" class="btn btn-default my-input-title" value="Avanzate"/>
+          </span>
+          <input type="text" id="query" value="" class="form-control" placeholder="Nome della canzone"/>
+          <span class="input-group-btn">
+            <input type="submit" id="search" class="btn btn-primary" value="Cerca"/>
+          </span>
+        </div>
+        <div id="advanced-form" style="display:none">
+          <div class="input-group">
+            <span class="input-group-addon my-input-title" id="basic-addon3">Artista</span>
+            <input type="text" id="artist-query" value="" class="form-control" placeholder="Nome artista"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon my-input-title" id="basic-addon3">Album</span>
+            <input type="text" id="album-query" value="" class="form-control" placeholder="Album"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon my-input-title" id="basic-addon3">Genere</span>
+            <input type="text" id="genre-query" value="" class="form-control" placeholder="Genere"/>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon my-input-title" id="basic-addon3">Anno</span>
+            <input type="text" id="year-query" value="" class="form-control" placeholder="Anno"/>
+          </div>
+        </div>
+      </form>
     </div>
+    <div id="results" class="row"></div>
+    <nav>
+      <ul id="pager" class="pager btn-lg">
+        <li id="prevPage" style="display:none"><a href="#">Indietro</a></li>
+        <li id="nextPage" style="display:none"><a href="#">Avanti</a></li>
+      </ul>
+    </nav>
+  </div>
+
+   
 
     <script id="oauth-template" type="text/x-handlebars-template">
 
@@ -46,32 +89,147 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
-      function cercaArtista(){
-        var valore = document.getElementById("ricerca").value;
+      
+      var audioObject = null;
+      var onAirClass = "onAir";
+      var songListClass = "songList";
+      var searchTerm = null;
+      var curOffset = 0;
+      var limitPerPage = 10;
+      var hasNext = false;
+      var hasPrev = false;
+      var hasAdvancedSearch = false;
 
-        console.log(valore);
-        var info;
-        $.ajax({
-            url: 'https://api.spotify.com/v1/search',
-            data: {
-              type:"artist",
-              q: valore,
-              limit:2,
-              dataType: 'json',
-            },
-            headers: {
-              'Authorization': 'Bearer ' + access_token
-            },
-            success: function(response) {
-              console.log(response);
-              /*if (response.d == true) {
-                    alert("You will now be redirected.");
-                    window.location = "//www.aspsnippets.com/";
-                }*/
-
+      $(document).ready(function(){
+        var $search = $("#search-form");
+        var $song = $search.find("#query");
+        var $artist = $search.find("#artist-query");
+        var $album = $search.find("#album-query");
+        var $genre = $search.find("#genre-query");
+        var $year = $search.find("#year-query");
+        $search.submit(function(e) {
+          curOffset = 0;
+          hasNext = false;
+          e.preventDefault();
+          searchTerm = '"' + $song.val() + '"';
+          if (hasAdvancedSearch) {
+            if ($album.val().length > 0) {
+              searchTerm += ' album:"' + $album.val() + '"';
             }
+            if ($artist.val().length > 0) {
+              searchTerm += ' artist:"' + $artist.val() + '"';
+            }
+            if ($genre.val().length > 0) {
+              searchTerm += ' genre:"' + $genre.val() + '"';
+            }
+            if ($year.val().length > 0) {
+              if (!isNaN($year.val())) {
+                searchTerm += ' year:' + $year.val();
+              } else {
+                alert("invalid year, ignored this field.");
+              }
+            }
+          }
+          console.log(searchTerm);
+          searchTrack(searchTerm);
         });
+        $("#nextPage").click(function(){
+          curOffset += limitPerPage;
+          console.log("next offset" + curOffset);
+          searchTrack(searchTerm);
+        });
+        $("#prevPage").click(function(){
+          curOffset -= limitPerPage;
+          console.log("prev offset" + curOffset);
+          searchTrack(searchTerm);
+        });
+        $("#advanced-button").click(function(){
+          if (hasAdvancedSearch) {
+            $("#advanced-form").slideUp();
+          } else {
+            $("#advanced-form").slideDown();
+          }
+          hasAdvancedSearch = !hasAdvancedSearch;
+        });
+      });
+
+      var searchTrack = function(query) {
+        if (audioObject != null) {
+          audioObject.pause();
+        }
+        $.ajax({
+          url: 'https://api.spotify.com/v1/search',
+          data: {
+            q: query,
+            type: 'track',
+            limit: limitPerPage,
+            offset: curOffset
+          },
+          headers: {
+                    'Authorization': 'Bearer ' + access_token
+          },
+          success: function (response) {
+            hasNext = (curOffset + limitPerPage) < response.tracks.total;
+            hasPrev = (curOffset - limitPerPage) >= 0;
+            handleTrackResponse(response);
+          }
+        });
+      };
+
+      var handleTrackResponse = function(response) {
+
+        console.log(response);
+        var $results = $("#results");
+        $results.html(layoutSongList(response.tracks.items));
+        $("." + songListClass).click(playSong);
+        if (hasNext) {
+          $("#nextPage").show();
+        } else {
+          $("#nextPage").hide();
+        }
+        if (hasPrev) {
+          $("#prevPage").show();
+        } else {
+          $("#prevPage").hide();
+        }
       }
+
+      // Input is the song items, and output is layed out html source
+      var layoutSongList = function(songItems) {
+        var htmlText = "";
+        for (var i = 0; i < songItems.length; ++i) {
+          var cur = songItems[i];
+          //console.log(cur);
+          var songName = cur.name;
+          var artistName = "Unkonwn";
+          if (cur.artists.length > 0) {
+            artistName = cur.artists[0].name;
+          }
+          var imgUrl = "";
+          if (cur.album.images.length > 0) {
+            imgUrl = cur.album.images[0].url;
+          }
+          var preview = cur.preview_url;
+          htmlText += '<div class=" col-lg-4 col-sm-6 text-center cover songList" data-preview="' + preview + '"><img id="cover-img" class="img  img-responsive img-center" src="'+ imgUrl +'" alt=""><h4>'+ songName +'<small><br>'+ artistName +'</small></h4></div>';
+        }
+        return htmlText;
+      }
+
+      var playSong = function() {
+        if (audioObject != null) {
+          audioObject.pause();
+        }
+        if ($(this).find("#cover-img").hasClass(onAirClass)) {
+          $(this).find("#cover-img").removeClass(onAirClass);
+          return;
+        }
+        $(this).parent().find("." + onAirClass).removeClass(onAirClass);
+        var previewUrl = $(this).attr("data-preview");
+        audioObject = new Audio(previewUrl);
+        audioObject.play();
+        $(this).find("#cover-img").addClass(onAirClass);
+}
+
 
       var access_token;
 
@@ -127,14 +285,16 @@
 
                   $('#login').hide();
                   $('#loggedin').show();
+
                 }
             });
-            $('#cerca_artista').show();
+            $('#track').show();
           } else {
               // render initial screen
               $('#login').show();
               $('#loggedin').hide();
-              $('#cerca_artista').hide();
+              $('#track').hide();
+              
           }
 
         }
