@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Music</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <style type="text/css">
+
+      .text-overflow {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 500px;
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+
+
+  <div class="container" id="track">
+    <div class="row header-padding mb-5">
+      <h1>Cerca la tua canzone</h1>
+      <p>Metti il nome della canzone e clicca su "Cerca".
+
+
+      <form id="search-form" action="http://localhost:8888/richiesta"  method="post" class="search-row " style="margin-bottom: 20px;">
+        <div class="input-group">
+          <input type="text" id="traccia" name="traccia" value="" class="form-control" placeholder="Nome della canzone"/>
+          <span class="input-group-btn">
+            <input class="btn btn-primary"type="submit" name="Cerca" value="Cerca">
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+    <script id="oauth-template" type="text/x-handlebars-template">
+
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+
+  </body>
+</html>

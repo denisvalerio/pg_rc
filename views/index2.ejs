@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container" id="track">
+      <div class="row header-padding mb-5">
+        <h1>Cerca la tua canzone</h1>
+        <p>Metti il nome della canzone e clicca su "Cerca".
+
+        <form id="search-form" action="http://localhost:8888/richiesta"  method="post" class="search-row " style="margin-bottom: 20px;">
+          <div class="input-group">
+            <input type="text" id="traccia" name="traccia" value="" class="form-control" placeholder="Nome della canzone"/>
+            <span class="input-group-btn">
+              <input class="btn btn-primary" type="submit" name="Cerca" value="Cerca">
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container  text-center  ">
+
+        <div class="row mb-5">
+
+
+
+
+
+          <% data.forEach(function(data) { %>
+
+              <div class="col-lg-4 col-sm-6">
+                <br>
+                <br>
+
+            <% var imageUrl = data.immagine.url %>
+              <img src="<%= imageUrl %>"/>
+              <h4> <%= data.nomeCanzone %> <small><br> <%= data.album %> </small></h4>
+                <% var Prev = data.preview %>
+                <audio controls>
+                  <source src="<%= Prev %>">
+                </audio>
+
+                <% var link= data.linkSpotify %>
+                <br><a href="<%=link %>"> <%=link %> </a>
+
+
+              </div>
+
+          <% }); %>
+
+        </div>
+      </div>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+      <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  </body>
+</html>
