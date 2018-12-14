@@ -133,5 +133,45 @@ function ListaTracks(songItems) {
   return list_track;
 }
 
+//ricerca concerti in cui uso una post per prendermi l'artista
+
+app.get('/concerti',function(req,res){
+  var art=req.query.q;
+  console.log(art);
+  var options={
+    url: "https://api.songkick.com/api/3.0/events.json?apikey=fp5PvandNOdyHRJd&artist_name="+art,
+  };
+  request(options,function(error,response,body){
+    var infojson2=JSON.parse(body);
+    
+    if(infojson2.resultsPage.results.event==undefined){
+
+    }
+    else{
+      var array_concerti=infojson2.resultsPage.results.event;
+      var concerti=ListaConcerti(array_concerti);
+      res.render('concerti',{evento:concerti});
+    }
+  })
+});
+
+function ListaConcerti(concertItems){
+  var list_concert=[];
+  for (var i=0; i <concertItems.length; ++i){
+    var tmp=concertItems[i];
+
+    list_concert[i]={
+      tipoEvento: tmp.type,
+      luogo: tmp.location.city,
+      data: tmp.start.date,
+      //orario: tmp.start.time,
+      nomePosto: tmp.displayName
+    }
+    console.log(list_concert[i]);
+
+  }
+  return list_concert;
+}
+
 console.log('Listening on 8888');
 app.listen(8888);

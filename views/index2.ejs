@@ -29,15 +29,22 @@
                 <br>
               <% var imageUrl = lista.immagine.url %>
               <img src="<%= imageUrl %>"/>
-              <h4> <%= lista.nomeCanzone %> <small><br> <%= lista.album %> </small></h4>
+              <h4> <%= lista.nomeCanzone %> <br> <i> <strong>  <%= lista.artista %> </strong></i> <br> <small><%= lista.album %> </small></h4>
                 <% var Prev = lista.preview %>
                 <audio controls>
                   <source src="<%= Prev %>">
                 </audio>
+
                 <% var link= lista.linkSpotify %>
                 <br><a href="<%=link %>"> <%=link %> </a>
+                <hr>
+                 <a type="button" class="btn btn-primary" href="http:///localhost:8888/concerti?q=<%= lista.artista %>">Cerca concerti artista</a>
+                <hr>
+
               </div>
+
           <% }); %>
+
 
         </div>
       </div>

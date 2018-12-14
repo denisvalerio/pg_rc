@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container  text-center ">
+        <div class="row mb-5">
+          <% evento.forEach(function(lista_eventi) { %>
+              <div class="col-lg-4 col-sm-6">
+                <br>
+                <br>
+              <% var imageUrl = lista_eventi.tipoEvento %>
+
+              <h4> <%= lista_eventi.luogo %> <br> <i> <strong>  <%= lista_eventi.data %> </strong></i> <br> <small><%= lista_eventi.nomePosto %> </small></h4>
+              </div>
+
+          <% }); %>
+
+
+        </div>
+      </div>
+
+  </body>
+</html>
