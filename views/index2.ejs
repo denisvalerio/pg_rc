@@ -21,7 +21,8 @@
         </form>
       </div>
     </div>
-    <div class="container  text-center  ">
+      <div class="container text-center">
+
         <div class="row mb-5">
           <% data.forEach(function(lista) { %>
               <div class="col-lg-4 col-sm-6">
@@ -29,12 +30,12 @@
                 <br>
               <% var imageUrl = lista.immagine.url %>
               <img src="<%= imageUrl %>"/>
-              <h4> <%= lista.nomeCanzone %> <br> <i> <strong>  <%= lista.artista %> </strong></i> <br> <small><%= lista.album %> </small></h4>
+              <h3> <%= lista.nomeCanzone %> </h3> <h4> <i> <strong>  <%= lista.artista %> </strong></i> </h4> <h5> <%= lista.album %> </h5>
                 <% var Prev = lista.preview %>
-                <audio controls>
-                  <source src="<%= Prev %>">
+                <audio controls style="margin-bottom:5%" >
+                  <source  src="<%= Prev %>"  >
                 </audio>
-
+                <div><h3>Link Spotify</h3><a href="http://www.animatedimages.org/cat-arrows-111.htm"><img src="http://www.animatedimages.org/data/media/111/animated-arrow-image-0311.gif" border="0" alt="animated-arrow-image-0311" /></a></div>
                 <% var link= lista.linkSpotify %>
                 <br><a href="<%=link %>"> <%=link %> </a>
                 <hr>

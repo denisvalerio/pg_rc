@@ -3,16 +3,17 @@ var express = require('express');
 var request = require('request');
 var cors = require('cors');
 var querystring = require('querystring');
-var cookieParser = require('cookie-parser');
+
 
 
 var client_id = '2d56e22bf1ed4d0c96ec616cc6ed5bba'; // Your client id
 var client_secret = '6dd3ecabd9f944fdb446ce03a9bc0a62'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var apikey='fp5PvandNOdyHRJd';
 
 
 
-var stateKey = 'spotify_auth_state';
+var nickname='';
 var a_t='';
 var app = express();
 var bodyParser=require("body-parser");
@@ -25,8 +26,7 @@ app.get('/',function (req,res) {
 
 app.get('/login', function(req, res) {
 
-  var state = 'ciao';
-  res.cookie(stateKey, state);
+
 
   // Autenticazione oauth spotify
   var scope = 'user-read-private user-read-email';
@@ -35,8 +35,7 @@ app.get('/login', function(req, res) {
       response_type: 'code',
       client_id: client_id,
       scope: scope,
-      redirect_uri: redirect_uri,
-      state: state
+      redirect_uri: redirect_uri
     }));
 });
 
@@ -66,13 +65,18 @@ app.get('/callback', function(req, res){
         a_t=access_token;
         var options = {
           url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
+          headers: { 'Authorization': 'Bearer ' + access_token }
+
         };
 
         // STAMPA info utente registrato
         request.get(options, function(error, response, body) {
             console.log(body);
+            var me=JSON.parse(body);
+            //console.log(me);
+            nickname=me.display_name;
+            console.log(nickname);
+
         });
         //rindirizzo pagina "ricerca"
           res.render('index3');
@@ -108,6 +112,9 @@ app.get('/api',function(req,res){
     if(infojson==undefined){
       res.render('index3');
     }
+    if(infojson.tracks.items==undefined){
+      res.render('index3');
+    }
     var array_tracks=infojson.tracks.items;
     var data=ListaTracks(array_tracks);
     res.render('index2',{data: data});
@@ -139,18 +146,18 @@ app.get('/concerti',function(req,res){
   var art=req.query.q;
   console.log(art);
   var options={
-    url: "https://api.songkick.com/api/3.0/events.json?apikey=fp5PvandNOdyHRJd&artist_name="+art,
+    url: "https://api.songkick.com/api/3.0/events.json?apikey="+apikey+"&artist_name="+art,
   };
   request(options,function(error,response,body){
     var infojson2=JSON.parse(body);
-    
+    console.log(infojson2);
     if(infojson2.resultsPage.results.event==undefined){
 
     }
     else{
       var array_concerti=infojson2.resultsPage.results.event;
       var concerti=ListaConcerti(array_concerti);
-      res.render('concerti',{evento:concerti});
+      res.render('concerti',{evento:concerti,name:nickname,artista:art});
     }
   })
 });
