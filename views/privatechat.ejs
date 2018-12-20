@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		.hide-this{
+			display:none;
+		}
+		#chat_window{
+			height: 500px;
+			width: 300px;
+			border: 1px solid #000;
+		}
+		.self_msg{
+			text-align: right;
+			color: grey;
+		}
+		.msg_receive{
+			text-align: left;
+			color: black;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="input_username_container">
+		<h4>Enter a user ID</h4>
+		<input type="text" id="id"  value="<%= username %>" hidden/>
+		<button id="save_id" hidden>Register</button>
+	</div>
+
+
+	<form id="chat_container" class="hide-this">
+		<h3 id="current_user"></h3>
+		<div id="chat_window"></div>
+		<div>
+			<h5>Inserisci il nickname della persona con cui vuoi parlare</h5>
+			<input type="text" id="to_id" value="" />
+		</div>
+		<div>
+			<h5>Inserisci il messaggio</h5>
+			<input type="text" id="msg" placeholder="Type message here" />
+			<button type="submit" id="send_msg">Send</button>
+		</div>
+	</form>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+
+		var socket = io.connect();
+
+		// registering username
+    $('#save_id').hide();
+    $('#input_username_container').hide();
+    $('#chat_container').show();
+
+
+
+			socket.emit('register_id',$('#id').val(), function(success){
+				if(success){
+					$('#input_username_container').hide();
+					$('#chat_container').show();
+					$('#current_user').val( success );
+				}
+				else
+					alert('take different USER_ID')
+			})
+
+
+
+		// sending private message
+
+		$('#chat_container').submit(function(e){
+			e.preventDefault()
+			var data = {
+				to: $('#to_id').val(),
+				msg: $('#msg').val()
+			}
+
+			socket.emit('private_message_sent', data, function(resp){
+				if( !resp )
+					alert('User ID was false');
+				else
+					$('#chat_window').append('<div class="self_msg"><b>'+resp.from+' : </b>'+ resp.msg +'</div>')
+			})
+		})
+
+
+		// listening to what server has to say ( if any)
+
+		socket.on('private_message_from_server',function(data){
+
+			$('#chat_window').append('<div class="msg_receive"><b>'+data.from+' : </b>'+ data.msg +'</div>')
+
+		})
+
+
+
+	</script>
+</body>
+</html>

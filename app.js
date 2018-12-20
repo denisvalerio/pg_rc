@@ -156,6 +156,7 @@ app.get('/concerti',function(req,res){
     }
     else{
       var array_concerti=infojson2.resultsPage.results.event;
+      console.log(array_concerti);
       var concerti=ListaConcerti(array_concerti);
       res.render('concerti',{evento:concerti,name:nickname,artista:art});
     }
@@ -174,7 +175,7 @@ function ListaConcerti(concertItems){
       //orario: tmp.start.time,
       nomePosto: tmp.displayName
     }
-    console.log(list_concert[i]);
+
 
   }
   return list_concert;

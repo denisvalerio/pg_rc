@@ -19,14 +19,16 @@ server.listen(port, function () {
 //app.use(express.static(__dirname+'/../app/'));
 
 app.set('view engine','ejs');
-app.get('/chat',function(req,res){
+app.get('/publicchat',function(req,res){
   var username=req.query.q;
   artist_name=req.query.a;
   console.log(artist_name);
   //console.log(username);
-  res.render('chat',{username:username});
+  res.render('publicchat',{username:username});
 
 })
+
+
 
 // Total number of users
 var numUsers = 0;
