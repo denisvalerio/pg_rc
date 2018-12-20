@@ -21,6 +21,10 @@
         </form>
       </div>
     </div>
+    <!-- Prendo i valori dal file JSON che è stato creato (data) 
+        Ciclo per ogni riga di 'data' e prendo i valori che mi servono
+        tra cui l'immagine dell album, canzone artista previeux,e link spotify.
+    -->
       <div class="container text-center">
 
         <div class="row mb-5">
@@ -39,6 +43,7 @@
                 <% var link= lista.linkSpotify %>
                 <br><a href="<%=link %>"> <%=link %> </a>
                 <hr>
+                <!-- Rimanda alla pagina dei concerti -->
                  <a type="button" class="btn btn-primary" href="http:///localhost:8888/concerti?q=<%= lista.artista %>">Cerca concerti artista</a>
                 <hr>
 

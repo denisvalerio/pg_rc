@@ -15,42 +15,48 @@ app.get('/privatechat',function(req,res){
 
 })
 
-	//  *--------------------- SOCKET CODES -----------------------
 
 	var user_ids = {}
 
 	io.sockets.on('connection', function(socket){
 
-		socket.on('register_id', function(sent_id, callback){ // registering the IDS
-			if( sent_id in user_ids ){ 						  // if sent_id exists
-				callback(false);						 	  // send false in call back
+		// Registra nickname utente
+		socket.on('register_id', function(sent_id, callback){ 
+
+			// Verifica se quel nickname è già presente nella user-ids
+			// in caso affermativo manda un acallback FALSE
+			// (non poso scrivermi da solo)
+			if( sent_id in user_ids ){ 						 
+				callback(false);						 	  
 			}
+			// Setto username dell utente ch entra e l'aggiungo alla lista
 			else{
-				socket.user_me = sent_id;
-				user_ids[ socket.user_me ] = socket;
+				socket.username = sent_id;
+				user_ids[ socket.username ] = socket;
 				callback(sent_id);
 			}
 		});
 
 
-		// sending private message
+		// Invio un messaggio privato
 		socket.on('private_message_sent', function(data, callback){
 
-			if( data.to in user_ids ){ 	// if user_id passed is valid
+			//Se quell utente è presente nalla lista, invia messaggio
+			if( data.to in user_ids ){ 
 				var processed_msg ={
 					msg: data.msg,
-					from: socket.user_me
+					from: socket.username
 				}
-				user_ids[data.to].emit( 'private_message_from_server', processed_msg ); // send msg to the subscriber
-				// io.sockets.emit('from_server', processed_msg) 			// broadcast message to every one including me
+				//Invia messaggio all utente con cui ho stabilito la connessione
+				user_ids[data.to].emit( 'private_message_from_server', processed_msg );
 				callback(processed_msg)
 			}
 			else
 				callback(false)
 		})
-
+		// Ogni volta che esci dala chat, chiudo la connessione
 	 socket.on('disconnect', function(data){
-		 	if( !socket.user_me ) return
-		 	delete user_ids.socket.user_me;
+		 	if( !socket.username ) return
+		 	delete user_ids.socket.username;
 		})
 	})

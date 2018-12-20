@@ -1,5 +1,3 @@
-
-// Setup basic express server
 var path=require('path');
 var express = require('express');
 var app = express();
@@ -19,74 +17,77 @@ server.listen(port, function () {
 //app.use(express.static(__dirname+'/../app/'));
 
 app.set('view engine','ejs');
+
+// rindirizzo alla chat pubblica
 app.get('/publicchat',function(req,res){
   var username=req.query.q;
   artist_name=req.query.a;
-  console.log(artist_name);
-  //console.log(username);
   res.render('publicchat',{username:username});
 
 })
 
 
 
-// Total number of users
+// Numero totale di utenti nella room
 var numUsers = 0;
-// Current room list.
+// Lista di room
 var curRoomList = {};
 
-// Action: Create, Join, Left.
+// Azioni possibili per gli utenti (creare room, entrare in una già esistente, abbandonarla)
 var logCreate = ' ha creato ';
-
 var logJoin = ' è entrato nella ';
 var logLeft = ' ha lasciato ';
 
-// Location: Lab (main website, can be joined or left),
-//           Room (can be created, joined, Left)
+
 var logLab = 'chat';
 var logRoom = 'room ';
 
+// Connessione tramite socket.io
+// E la room di default è creata al nome dell'artista cercato
 io.on('connection', function (socket) {
   var addedUser = false;
   var curRoomName = artist_name;
 
-  // when the client emits 'new message', this listens and executes
+  // Quando il client manda un nuovo messaggio viene preso ed eseguito 
+  // (mandato sulla room selezionata dall'utente)
   socket.on('new message', function (data) {
-    // we tell the client to execute 'new message'
+    
+    // Esegue l'inoltro del messaggio a tutti gli utenti che sono in quella room
     socket.broadcast.to(curRoomName).emit('new message', {
       username: socket.username,
       message: data
     });
   });
 
-  // when the client emits 'add user', this listens and executes
+  // Funzione eseguita quando si aggiunge un utente
   socket.on('add user', function (username) {
     if (addedUser) return;
 
-    // we store the username in the socket session for this client
+    // Memorizziamo l'username nella socket della sessione per quest utente
     socket.username = username;
     ++numUsers;
     addedUser = true;
 
-    // Default to join 'Lobby'.
+    // Prendo parte alla room di default
     socket.join(curRoomName);
 
-    // If there is no the same curRoomName in room list, add it to room list.
-    // And set user number in it = 1, else user number + 1.
+    // Verifico se questo room-name non è presente nella lista delle rooms ed in caso
+    // aggiungo il room-name alla lista e metto user-number ad 1, 
+    // altrimenti incremento di 1 il suo nome in lista
     if (!isRoomExist(curRoomName, curRoomList)) {
       curRoomList[curRoomName] = 1;
     } else {
       ++curRoomList[curRoomName];
     }
 
-    // First join chat room, show current room list.
+    // All inizio mostro la lista delle rooms
     socket.emit('show room list', curRoomName, curRoomList);
 
     socket.emit('login', {
       numUsers: numUsers
     });
 
-    // echo to room (default as 'Lobby') that a person has connected
+    // Stampo nella room il nickname dell'utente appena entrato
     socket.broadcast.emit('user joined', {
       username: socket.username,
       numUsers: numUsers,
@@ -97,28 +98,30 @@ io.on('connection', function (socket) {
     });
   });
 
-  // when the client emits 'typing', we broadcast it to others
+  // Quando l'utente sta scrivendo lo notifico broadcast 
+  // a tutti gli altri utenti nella room
   socket.on('typing', function () {
     socket.broadcast.to(curRoomName).emit('typing', {
       username: socket.username
     });
   });
 
-  // when the client emits 'stop typing', we broadcast it to others
+  // Quando l'utente ha smessodi scrivere lo notifico broadcast
+  // a tutti gli altri utenti nella room
   socket.on('stop typing', function () {
     socket.broadcast.emit('stop typing', {
       username: socket.username
     });
   });
 
-  // when the user disconnects, perform this
+  // Funzione per quando l'utente si disconnette
   socket.on('disconnect', function () {
     if (addedUser) {
       --numUsers;
       --curRoomList[curRoomName];
 
-      // If there is no user in room, delete this room,
-      // Except this room is 'Lobby'.
+      // Se non ci sono utenti nella room la cancello
+      // Eccetto se è la room di default
       if (curRoomList[curRoomName] === 0 && curRoomName !== artist_name) {
         delete curRoomList[curRoomName];
       }
@@ -126,7 +129,7 @@ io.on('connection', function (socket) {
       if (numUsers === 0) {
         curRoomList = {};
       }
-      // echo globally that this client has left
+      // Notifico globalmente che questo cliente ha abbandonato
       socket.broadcast.emit('user left', {
         username: socket.username,
         numUsers: numUsers,
@@ -137,7 +140,7 @@ io.on('connection', function (socket) {
     }
   });
 
-  // Show room list to user.
+  // Mostro la lista di room all'utente
   socket.on('room list', function () {
     socket.emit('show room list', curRoomName, curRoomList);
   });
@@ -146,7 +149,9 @@ io.on('connection', function (socket) {
     socket.emit('stop typing');
 
     if (room !== curRoomName) {
-      // Before join room, first need to leave current room. -------------------
+
+      //Quando l'utente entra in una nuova room 
+      // automaticamnte lascia quella precedente
       socket.leave(curRoomName);
       socket.broadcast.to(curRoomName).emit('user left', {
         username: socket.username,
@@ -158,16 +163,15 @@ io.on('connection', function (socket) {
       });
       --curRoomList[curRoomName];
 
-      // If there is no user in room, delete this room,
-      // Except this room is 'Lobby'.
       if (curRoomList[curRoomName] === 0 && curRoomName !== artist_name) {
         delete curRoomList[curRoomName];
       }
 
-      // Then join a new room. -------------------------------------------------
+      // Entra nella nuova room scelta
       socket.join(room);
 
-      // If there is no the same room in room list, add it to room list.
+      // Se non è presente la room (che voglio creare) nella 
+      // lista delle room, la creo.
       if (!isRoomExist(room, curRoomList)) {
         curRoomList[room] = 1;
         socket.emit('join left result', {
@@ -186,7 +190,7 @@ io.on('connection', function (socket) {
         });
       }
 
-      // Every time someone join a room, reload current room list.
+      // Ogni volta che un utente entra nella room, si aggiorna la lista utenti di quella room
       socket.emit('show room list', room, curRoomList);
       curRoomName = room;
       socket.broadcast.to(room).emit('user joined', {
@@ -201,7 +205,7 @@ io.on('connection', function (socket) {
   });
 });
 
-// Check if roomName is in roomList Object.
+// Funzione che verifica se la room che si vuole creare è nella lista
 function isRoomExist (roomName, roomList) {
   return roomList[roomName] >= 0;
 }

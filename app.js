@@ -18,8 +18,13 @@ var a_t='';
 var app = express();
 var bodyParser=require("body-parser");
 app.use(bodyParser.urlencoded({extended:false}));
+
+
+//utilizzo file .ejs e li metto nella cartella /views
 app.set('view engine','ejs');
 
+
+//rindirizamento alla pagina iniziale
 app.get('/',function (req,res) {
   res.render('index');
 });
@@ -121,7 +126,7 @@ app.get('/api',function(req,res){
   })
 });
 
-//funzione per prendere le traccie
+// Funzione per prendere le traccie
 function ListaTracks(songItems) {
   var list_track =[] ;
   for (var i = 0; i < songItems.length; ++i) {
@@ -140,24 +145,28 @@ function ListaTracks(songItems) {
   return list_track;
 }
 
-//ricerca concerti in cui uso una post per prendermi l'artista
+// Ricerca concerti in cui uso una post per prendermi l'artista
 
 app.get('/concerti',function(req,res){
   var art=req.query.q;
-  console.log(art);
+
+  // Chiamata REST API songkick per info eventi (concerti)
   var options={
     url: "https://api.songkick.com/api/3.0/events.json?apikey="+apikey+"&artist_name="+art,
   };
   request(options,function(error,response,body){
     var infojson2=JSON.parse(body);
-    console.log(infojson2);
+
+    // Non ci sono attualmente concerti oer quell'artista
     if(infojson2.resultsPage.results.event==undefined){
 
     }
     else{
       var array_concerti=infojson2.resultsPage.results.event;
-      console.log(array_concerti);
       var concerti=ListaConcerti(array_concerti);
+
+      // Rindirizzo a concerti.ejs dove passo la lista dei concerti 
+      // artista, e il nickname dell'utente loggato tramite spotify
       res.render('concerti',{evento:concerti,name:nickname,artista:art});
     }
   })
@@ -172,7 +181,6 @@ function ListaConcerti(concertItems){
       tipoEvento: tmp.type,
       luogo: tmp.location.city,
       data: tmp.start.date,
-      //orario: tmp.start.time,
       nomePosto: tmp.displayName
     }
 
