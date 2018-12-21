@@ -1,0 +1,19 @@
+{
+  "name": "pg_rc",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "stack": "heroku-18",
+  "buildpacks": [
+    {
+      "url": "https://github.com/universityigi/pg_rc"
+    }
+  ]
+}
