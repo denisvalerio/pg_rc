@@ -165,7 +165,7 @@ app.get('/concerti',function(req,res){
       var array_concerti=infojson2.resultsPage.results.event;
       var concerti=ListaConcerti(array_concerti);
 
-      // Rindirizzo a concerti.ejs dove passo la lista dei concerti 
+      // Rindirizzo a concerti.ejs dove passo la lista dei concerti
       // artista, e il nickname dell'utente loggato tramite spotify
       res.render('concerti',{evento:concerti,name:nickname,artista:art});
     }

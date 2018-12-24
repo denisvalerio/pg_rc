@@ -56,20 +56,9 @@
     $('#save_id').hide();
     $('#input_username_container').hide();
     $('#chat_container').show();
+		$('#current_user').val( $('#id').val() );
 
-	// Prendo username e poi andrò a verificare se esiste già
-	socket.emit('register_id',$('#id').val(), function(success){
-
-		// In caso di successo 
-		if(success){
-			$('#input_username_container').hide();
-			$('#chat_container').show();
-			$('#current_user').val( success );
-		}
-		else
-			alert('Username non valido!')
-	})
-
+	
 	// Invio messaggio privato
 	$('#chat_container').submit(function(e){
 		e.preventDefault()
@@ -84,7 +73,7 @@
 
 			// Invio della risposta, creando un html
 			else
-				$('#chat_window').append('<div class="self_msg"><b>'+resp.from+' : </b>'+ resp.msg +'</div>')
+			$('#chat_window').append('<div class="self_msg"><b>'+resp.from+' : </b>'+ resp.msg +'</div>')
 		})
 	})
 

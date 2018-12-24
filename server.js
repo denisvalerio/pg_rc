@@ -48,10 +48,10 @@ io.on('connection', function (socket) {
   var addedUser = false;
   var curRoomName = artist_name;
 
-  // Quando il client manda un nuovo messaggio viene preso ed eseguito 
+  // Quando il client manda un nuovo messaggio viene preso ed eseguito
   // (mandato sulla room selezionata dall'utente)
   socket.on('new message', function (data) {
-    
+
     // Esegue l'inoltro del messaggio a tutti gli utenti che sono in quella room
     socket.broadcast.to(curRoomName).emit('new message', {
       username: socket.username,
@@ -72,7 +72,7 @@ io.on('connection', function (socket) {
     socket.join(curRoomName);
 
     // Verifico se questo room-name non è presente nella lista delle rooms ed in caso
-    // aggiungo il room-name alla lista e metto user-number ad 1, 
+    // aggiungo il room-name alla lista e metto user-number ad 1,
     // altrimenti incremento di 1 il suo nome in lista
     if (!isRoomExist(curRoomName, curRoomList)) {
       curRoomList[curRoomName] = 1;
@@ -98,7 +98,7 @@ io.on('connection', function (socket) {
     });
   });
 
-  // Quando l'utente sta scrivendo lo notifico broadcast 
+  // Quando l'utente sta scrivendo lo notifico broadcast
   // a tutti gli altri utenti nella room
   socket.on('typing', function () {
     socket.broadcast.to(curRoomName).emit('typing', {
@@ -150,7 +150,7 @@ io.on('connection', function (socket) {
 
     if (room !== curRoomName) {
 
-      //Quando l'utente entra in una nuova room 
+      //Quando l'utente entra in una nuova room
       // automaticamnte lascia quella precedente
       socket.leave(curRoomName);
       socket.broadcast.to(curRoomName).emit('user left', {
@@ -170,7 +170,7 @@ io.on('connection', function (socket) {
       // Entra nella nuova room scelta
       socket.join(room);
 
-      // Se non è presente la room (che voglio creare) nella 
+      // Se non è presente la room (che voglio creare) nella
       // lista delle room, la creo.
       if (!isRoomExist(room, curRoomList)) {
         curRoomList[room] = 1;
