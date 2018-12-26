@@ -3,30 +3,48 @@
   <head>
     <title>Music</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css?family=Bangers');
+      @import url('https://fonts.googleapis.com/css?family=Bungee');
+      @import url('https://fonts.googleapis.com/css?family=Bungee|Share+Tech+Mono');
+      @import url('https://fonts.googleapis.com/css?family=Faster+One');
 
-    <style type="text/css">
+      html,
+      body {
+        height: 100%;
+        background-color: #333;
+      }
 
-      .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
+      body {
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        -ms-flex-pack: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        color: #fff;
+        text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+        box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
       }
     </style>
-
-
   </head>
-
   <body>
     <div class="container">
     <!-- Bottone login per autenticazione spotify-->
-      <div id="login">
-        <h1>Music</h1>
-        <a href="http://localhost:8888/login" class="btn btn-primary">Log in with Spotify</a>
+      <div id="login" style="margin-top:15%;">
+        <h1 class="text-center text-success" style="font-size:60px;font-family: 'Bungee', cursive;">Share the Music</h1>
+        <h2 class="text-center" style="font-family: 'Share Tech Mono', monospace;">Mettere in contatto diverse persone che vogliono condividere la stessa esperienza musicale. </h2>
+        <h3 class="text-center" style="font-family: 'Share Tech Mono', monospace;">Basta una canzone. Cerca, trova il tuo artista, il concerto a cui tanto vuoi andare. </h3>
+        <h3 class="text-center" style="font-family: 'Share Tech Mono', monospace;">I biglietti per quel concerto sono finiti e non sai come rimediarne uno? Oppure vuoi vendere il tuo biglietto ma non sai a chi venderlo? </h3>
+        <h3 class="text-center" style="font-family: 'Share Tech Mono', monospace;">   Abbiamo creato chat pubbliche per te! Che si riferiscono solo a quello specifico cantante!</h3>
+        <h2 class="text-center text-danger" style=" font-size: 40px; font-family: 'Share Tech Mono', monospace;">I nostri servizi non finiscono qui!</h2>
+        <h3 class="text-center"style="font-family: 'Share Tech Mono', monospace;">Oltre alle chat pubbliche mettiamo a disposizione delle chat private dove è possibile comunicare solo con un'unica persona, magari
+          per andare insieme a quel concerto o semplicemente per scambiare opinioni su quell'artista</h3>
+        <img style="width:7%; margin-top: 2%;margin-bottom: 2%;margin-left:47%;;"src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8Y2lyY2xlIHN0eWxlPSJmaWxsOiM4QkMzNEE7IiBjeD0iMjU2IiBjeT0iMjU2IiByPSIyNTYiLz4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojMzc0NzRGOyIgZD0iTTM2MC4zNTIsMzc2LjM1MmMtMy4yLDAtNi40LTAuOTI4LTkuMTg0LTIuOTEyYy02MC00Mi4xNzYtMTU5LjgwOC00NC41MTItMjI3LjItMjguOCAgIGMtOC41NDQsMi4wMTYtMTcuMjE2LTMuMzYtMTkuMi0xMS45NjhzMy4zMjgtMTcuMjE2LDExLjk2OC0xOS4yMzJjNzQuMDgtMTcuMTUyLDE4NC44LTE0LjAxNiwyNTIuOCwzMy44MjQgICBjNy4yNjQsNS4wODgsOC45NiwxNS4wNzIsMy45MDQsMjIuMjcyQzM3MC4zMDQsMzczLjk4NCwzNjUuMzc2LDM3Ni4zNTIsMzYwLjM1MiwzNzYuMzUyeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzM3NDc0RjsiIGQ9Ik0zOTEuNjQ4LDMxMy43NmMtMy4yNjQsMC02LjQ5Ni0wLjk2LTkuMzQ0LTMuMDA4QzMxMi43MzYsMjYwLjgsMjI3LjIzMiwyNDguMzg0LDExMy4xMiwyNzEuNjggICBjLTguNjA4LDEuNjk2LTE3LjEyLTMuODA4LTE4Ljg4LTEyLjQ4Yy0xLjc5Mi04LjY0LDMuODA4LTE3LjEyLDEyLjQ0OC0xOC44OGMxMjMuNDI0LTI1LjE4NCwyMTYuOTI4LTExLjEwNCwyOTQuMzA0LDQ0LjQxNiAgIGM3LjE2OCw1LjE1Miw4LjgsMTUuMTY4LDMuNjQ4LDIyLjMzNkM0MDEuNTM2LDMxMS40MjQsMzk2LjY0LDMxMy43NiwzOTEuNjQ4LDMxMy43NnoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzNzQ3NEY7IiBkPSJNNDIyLjk3NiwyMzAuMjcyYy0zLjEwNCwwLTYuMjQtMC44OTYtOC45OTItMi43NTJjLTg4LjIyNC01OS44NzItMjIyLjMzNi02MC4xNi0zMDkuMTUyLTI5LjQ0ICAgYy04LjMyLDIuODgtMTcuNDcyLTEuNDQtMjAuNDE2LTkuNzkyYy0yLjk0NC04LjMyLDEuNDA4LTE3LjQ3Miw5Ljc2LTIwLjQxNkMxODguNjA4LDEzNC40OTYsMzM0Ljk0NCwxMzUuMiw0MzIsMjAxLjAyNCAgIGM3LjMyOCw0Ljk2LDkuMTg0LDE0LjkxMiw0LjI1NiwyMi4yMDhDNDMzLjEyLDIyNy44MDgsNDI4LjA2NCwyMzAuMjcyLDQyMi45NzYsMjMwLjI3MnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"/>
+        <a href="http://localhost:8888/login" class="btn btn-success" style="height: 40%; font-size: 20px;margin-left:42.5%;">Login with Spotify</a>
       </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
 </body>
 </html>

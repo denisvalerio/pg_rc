@@ -14,8 +14,6 @@ app.get('/privatechat',function(req,res){
   res.render('privatechat',{username:username});
 
 })
-
-
 	var user_ids = {}
 
 	io.sockets.on('connection', function(socket){

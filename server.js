@@ -25,9 +25,6 @@ app.get('/publicchat',function(req,res){
   res.render('publicchat',{username:username});
 
 })
-
-
-
 // Numero totale di utenti nella room
 var numUsers = 0;
 // Lista di room
