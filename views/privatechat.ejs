@@ -64,7 +64,6 @@
 <body>
 	<!-- Utilizzato per settare il nickname dell utente autenticato. (non visibile all utente)-->
 	<div id="input_username_container">
-		<h4>Enter a user ID</h4>
 		<input type="text" id="id" value="<%= username %>" hidden/>
 		<button id="save_id" hidden>Register</button>
 	</div>
@@ -75,12 +74,12 @@
 		<div id="chat_window" style="margin: 0; overflow-y: scroll; margin-left: 5%;padding: 10px 20px 10px 20px;"></div>
 		<div>
 			<h4 style="width:100%;"class="text-center">Inserisci il nickname della persona con cui vuoi parlare</h4>
-			<input type="text" id="to_id"  value="" />
+			<input type="text" id="to_id" class="form-control"  value="" />
 		</div>
 		<div>
 			<h4 class="text-center">Inserisci il messaggio</h4>
 			<div class="input-group" style="width:100%;">
-				<input type="text"id="msg" placeholder="Scrivi messaggio qui"/>
+				<input type="text"id="msg" class="form-control"placeholder="Scrivi messaggio qui"/>
 				<input type="submit" class="btn btn-primary" id="send_msg" value="Send">
 			</div>
 
