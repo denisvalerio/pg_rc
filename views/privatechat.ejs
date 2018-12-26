@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<title></title>
 	<style type="text/css">
+	* {
+    box-sizing: border-box;
+  }
+	html, input {
+		font-family:
 
+			'HelveticaNeue-Light',
+			'Helvetica Neue Light',
+			'Helvetica Neue',
+			Helvetica,
+			Arial,
+			'Lucida Grande',
+			sans-serif;
+	}
+
+	html, body {
+		background-color: #fffad3;
+		height: 90%;
+	}
 		.hide-this{
 			display:none;
 		}
-		#chat_window{
-			height: 500px;
-			width: 300px;
-			border: 1px solid #000;
+		#chat_container{
+			height:90%;
+			background-color: #fffad3;
 		}
+		#chat_window{
+			border: 1px solid #000;
+			background-color: beige;
+	    height: 100%;
+			width: 90%;
+	    text-align: center;
+		}
+		#to_id{
+			width: 50%;
+			margin-left: 25%;
+		}
+		#msg{
+			width: 46.5%;
+			margin-left: 25%;
+		}
+
 		.self_msg{
 			text-align: right;
 			color: grey;
@@ -20,6 +54,10 @@
 			text-align: left;
 			color: black;
 		}
+		form{
+			list-style: none;
+	    word-wrap: break-word;
+		}
 
 	</style>
 </head>
@@ -27,22 +65,25 @@
 	<!-- Utilizzato per settare il nickname dell utente autenticato. (non visibile all utente)-->
 	<div id="input_username_container">
 		<h4>Enter a user ID</h4>
-		<input type="text" id="id"  value="<%= username %>" hidden/>
+		<input type="text" id="id" value="<%= username %>" hidden/>
 		<button id="save_id" hidden>Register</button>
 	</div>
 
 	<!--Chat privata dove occorre specificare il destinatario del messggio da digitare -->
-	<form id="chat_container" class="hide-this">
+	<form id="chat_container" class="hide-this" style="margin-top:0;">
 		<h3 id="current_user"></h3>
-		<div id="chat_window"></div>
+		<div id="chat_window" style="margin: 0; overflow-y: scroll; margin-left: 5%;padding: 10px 20px 10px 20px;"></div>
 		<div>
-			<h5>Inserisci il nickname della persona con cui vuoi parlare</h5>
-			<input type="text" id="to_id" value="" />
+			<h4 style="width:100%;"class="text-center">Inserisci il nickname della persona con cui vuoi parlare</h4>
+			<input type="text" id="to_id"  value="" />
 		</div>
 		<div>
-			<h5>Inserisci il messaggio</h5>
-			<input type="text" id="msg" placeholder="Type message here" />
-			<button type="submit" id="send_msg">Send</button>
+			<h4 class="text-center">Inserisci il messaggio</h4>
+			<div class="input-group" style="width:100%;">
+				<input type="text"id="msg" placeholder="Scrivi messaggio qui"/>
+				<input type="submit" class="btn btn-primary" id="send_msg" value="Send">
+			</div>
+
 		</div>
 	</form>
 
@@ -58,7 +99,7 @@
     $('#chat_container').show();
 		$('#current_user').val( $('#id').val() );
 
-	
+
 	// Invio messaggio privato
 	$('#chat_container').submit(function(e){
 		e.preventDefault()
@@ -69,7 +110,7 @@
 
 		socket.emit('private_message_sent', data, function(resp){
 			if( !resp )
-				alert('User ID was false');
+				alert('Nickname non valido');
 
 			// Invio della risposta, creando un html
 			else

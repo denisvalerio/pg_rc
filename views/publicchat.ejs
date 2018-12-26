@@ -183,7 +183,6 @@
     font-weight: bold;
     padding: -10px 0 20px 0;
   }
-
   .room.page .room-hint {
     color: #3d3d3d;
     font-size: 120%;
@@ -209,7 +208,6 @@
 
     /* Let text not exceed <div> */
     overflow: auto;
-
     padding: 10px 10px;
     transition: 0.3s;
   }
@@ -229,7 +227,6 @@
   .user-number-in-room {
     float: right;
   }
-
   /* Tool buttons */
 
   .btn {
@@ -270,7 +267,6 @@
     right: 2em;
     top: 1em;
   }
-
   /* Tool slides */
 
   .ui-tips {
@@ -333,7 +329,10 @@
     </li>
 
     <li class='login page' id='login-page'>
-
+form{
+			list-style: none;
+	    word-wrap: break-word;
+		}
           <input class='usernameInput' type='text' minlength='1' maxlength='14'
                  value="<%= username %>" autofocus readonly/>
     </li>
@@ -348,8 +347,8 @@
   <script>
 
   $(function() {
-    var FADE_TIME = 150; 
-    var TYPING_TIMER_LENGTH = 400; 
+    var FADE_TIME = 150;
+    var TYPING_TIMER_LENGTH = 400;
     var COLORS = [
       '#e21400', '#91580f', '#f8a700', '#f78b00',
       '#58dc00', '#287b00', '#008dff', '#4ae8c4',
@@ -472,7 +471,7 @@
       options = options || {};
       var $logDiv;
 
-      // Se l'evento è definito (ex: join) 
+      // Se l'evento è definito (ex: join)
       if (typeof options.userConnEvent !== 'undefined') {
         var userName = options.username;
         // setta il colore del nickname
@@ -563,7 +562,7 @@
       } else {
         $messages.append($el);
       }
-      
+
       $messages[0].scrollTop = $messages[0].scrollHeight;
     }
 
