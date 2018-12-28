@@ -8,6 +8,7 @@ services:
       - NODE_ENV=production
     volumes:
       - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: intro
     ports:
       - "8888:8888"
     expose:
@@ -21,6 +22,7 @@ services:
       - NODE_ENV=production
     volumes:
       - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: pubblica
     ports:
       - "3230:3230"
     expose:
@@ -34,6 +36,7 @@ services:
       - NODE_ENV=production
     volumes:
       - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: privata
     ports:
       - "2000:2000"
     expose:
