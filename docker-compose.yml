@@ -14,6 +14,7 @@ services:
     expose:
       - 8888
     command: "npm run start"
+
   node2:
     image: "node:8"
     user: "node"
@@ -28,6 +29,7 @@ services:
     expose:
       - 3230
     command: "npm run server"
+    
   node3:
     image: "node:8"
     user: "node"

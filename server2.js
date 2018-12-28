@@ -3,9 +3,10 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
-server.listen(2000);
+var PORT = process.env.PORT || 2000;
+server.listen(PORT);
 var username="";
-console.log('server started');
+console.log('Server listening at port %d', PORT);
 
 app.set('view engine','ejs');
 app.get('/privatechat',function(req,res){
