@@ -30,11 +30,11 @@
 	    	text-align: center;
 		}
 		#to_id{
-			width: 50%;
+			width: 46.7%;
 			margin-left: 25%;
 		}
 		#msg{
-			width: 46.5%;
+			width: 46.7%;
 			margin-left: 25%;
 		}
 		.self_msg{
@@ -66,15 +66,15 @@
 	    	word-wrap: break-word;
 		}
 		.btn-circle.btn-xl {
-  width: 50px;
-  height: 50px;
-	margin-left: 10px;
-	margin-top: -5px;
-  padding: 5px 10px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-}
+		  width: 45px;
+		  height: 45px;
+			margin-left: 10px;
+			margin-top: -5px;
+		  padding: 5px 10px;
+		  font-size: 24px;
+		  line-height: 1.33;
+		  border-radius: 35px;
+		}
 
 	</style>
 </head>
@@ -91,12 +91,16 @@
 		<div id="chat_window" style="margin: 0; overflow-y: scroll; margin-left: 5%;padding: 10px 20px 10px 20px;"></div>
 		<div>
 			<h4 style="color:white;" class="text-center">Inserisci il nickname della persona con cui vuoi parlare</h4>
+
 			<div class="input-group" style="width:100%;">
-				<input type="text" id="to_id" class="form-control"  value="" />
+				<input type="text" id="to_id" class="form-control"/>
+				<button type="button" class="btn btn-primary btn-circle btn-xl" id="nickname"><img style="width:85%; margin-bottom:5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALfSURBVGhD7dlJyE1hHMfxax6SDEU2EhaKIoWFFQtzUcrCVJKpTAsiWVmIbLBQhg0LQ1EWhhRZkEihbEzJlGFlyDx/f7f31Onc/3uG53nee468v/r0vue85z7v/zz3ufc85zy19rTn/8poHMZz/MI33MU29EdT0rHlp2uW4gf+tNCJRL/La4xF8EzETtzAS0Q9eB+7MRh5Mx4/oYJPYxS6QO+CTvAt9LcX6I0gGYPLiPeW5TNmIk9OQK+5jk7akcg8RO0u1w7fTId6PWo0i45VD89GWtTTOn5dfasx3RENu33a4ZMJKHISScfQFVaGYCh61rca0wO/oXY0nJ3TAXeQLK6oPXDJSkRtzNUO10xGvCBXGh7DUCSLEI2Ee+gM5+hbKFmUq63IEw2zI4he9xTD4ZUriBfj4wKyos/SJUSv0eerL7zzBPFifGh4ZGUZouPXaEeovEO8GB8aIlk5Cx2ri23Q6MqdLMjVQ2Ql+oY8UN8KGE3ckgW50tjPynrswJz6VsAchVWUi0MoLZtgFeVCvV1apsEqykWeqbg67ib2wusCmMwGWEW5mIW06ETjxy9AsNxCvHEfurilZRzixy9GsDxGvHEfmnZkZTseQbe93bQjVM7BKsrFWpQWzUCtoorSLHYQSotuP4/DKi4v3ZPrvqL06GvwA6wi88gz621aTsIqMo+gs1jfTIJVZJb36INK5TysYtNsRuUyEF9hFWy5DetZVSVS5EbrDCqb+DPaLBdR2VgFt0YPLiqZ+bAKbs0njEBlomWDVfgCq+A0rzAVpUbPmPQuhLhvv4oZ0CPYpqUftkC9aRXlQ09JFkJrIG0WXYF34SOsIkJ6hhXwXe1qyBS8gfVP29I1FFnhSs0SJNftmkkdOBJe0bJBtIZXJq3m6rPpFN0T6/7YargMzg/w4guNVfAdA1A4p2A1WKbVKJwHsBor00EUii5IRWayzaJ1/ELphf0VtBHt+QdTq/0FyIGl7NqTFggAAAAASUVORK5CYII="></button>
 		</div>
 		<div>
+
 			<h4 class="text-center" style="color:white;" >Inserisci il messaggio</h4>
 			<div class="input-group" style="width:100%;">
+
 				<input type="text" id="msg" class="form-control" placeholder="Scrivi messaggio qui"/>
 				<button type="submit" class="btn btn-primary btn-circle btn-xl" id="send_msg"><img style="width:75%; margin-bottom:5px;"src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANgSURBVGhD1dlLqA5hHMfx4xJC7hJZiBWlKDu5JJcs3MoGKwtiyUJy38hWVqSkyErYWQgll1wi1xBZkFxzKeTu+3vPefKY85/bM/Mc7/urT+fMNO95nnln/jP/mdPWwhmEnXiJ5VrRaumFdXiN3x22oGXSHfrmn8DtgDMdLZF5uI7kDsgX9EZTZzJOwdoB5yyaNmNxBL9gTd63DU2XYdiNr7AmbWmq+uiLzXgPa7JpmqY+emI1nsOaaJ6mqI8luAdrgkX91/qYiouwJlbWf6mPCTgOa0Ihurw+RmE/vsOaUKguqw/X1H2GNZGqoteH1dTFEK0+spq6ukWrj7lIa+qK0uReJNalqb0+ijR1RTzFDhTpraS2+ijT1OU5j0l45a3LU7k+Qpq6LPugc73MUdUp2AdBCW3q0uiLWANlA6xt0gTVR9WmzqKCVpuiTEHZo1u6Pupo6pKuYjSU/ngIa7ssheujzqbOdwj+uX0Q1nZZCtVH3U2d8wPr4WcZrG3zZNbHSMRo6uQt5sDPGIReNDLr4xGsD1V1G+PgRxePS7C2LyKzPnbhI6wPhjoGFXMy6oat7YsoVB/aYDFUkO9g/aEidKfX4e+GZGZC9WJ9rojS9w+14fNxAG9g/VHLByyClSFQP2V9rqhK/ZXO6dnYC731tgaQBxiPtNRxNazt+aMHZmAPnsENcBJ6GkyLWhF/QiEq9VdZ0UPUHWiQrCOhe9MnJCdWVtTnc/cQNLix1Dn6Bm8iOakQtT1/JKPa+Qkd8rSoRbcmFUKndJToFY8GeNxY6pyNSE4mVLT6UNR+a5ALjaV/swK6n+ie4V8UQkWtjwXQIEcbS38zC+75Yi3UsuvS7E+srGj1oayCBtGl2GUiXDOotsdFp+F9+JMrI1p9KNuhQTY1ltq/eXfnPoxki6IOO+QhLWp9KLrTa6CVGIhbHcunoRbHygjchT/RPFHrQzkBDaRa0eT1u3ZGO5WV4XA7XUTU+lCuQANd6/ip08o9i+dFr5RuwJ9wmqj1ofidrApchV4mQ5H3ijV6faiQv0GDqY+ahpCotXFH1BK9PvTkp4F0w1uoFRWirvkykjsh0etD0VuRpe2/Vo4uENbrp+j1ESMDoJfZbiei10fM6JQ9B+3IGa1o5fTDVuj/LiXS1vYH/ajgaUkW/esAAAAASUVORK5CYII="></button>
 			</div>
@@ -111,12 +115,16 @@
 		var socket = io.connect();
 
 	// Nascondo l'input 'Text-id' e mostro la chat
+
     $('#save_id').hide();
     $('#input_username_container').hide();
     $('#chat_container').show();
 		$('#current_user').val( $('#id').val() );
 
-
+		$('#nickname').click(function(){
+			var nick=$('#id').val();
+			alert("Sei loggato come: "+nick);
+		})
 	// Invio messaggio privato
 	$('#chat_container').submit(function(e){
 		e.preventDefault()
