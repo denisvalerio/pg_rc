@@ -11,8 +11,13 @@ var client_secret = '6dd3ecabd9f944fdb446ce03a9bc0a62'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 var apikey='fp5PvandNOdyHRJd';
 
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const geocodingClient = mbxGeocoding({ accessToken: 'pk.eyJ1Ijoic3ZldmFzIiwiYSI6ImNqcTZiZG01bTI2a2k0OGxjOWR6bjZlYmEifQ.cv6fWAD7oKn96CJmbJKnhw' });
 
 
+
+var concerts=[];
+var nome_artista='';
 var nickname='';
 var a_t='';
 var app = express();
@@ -149,6 +154,7 @@ function ListaTracks(songItems) {
 
 app.get('/concerti',function(req,res){
   var art=req.query.q;
+  nome_artista=art
 
   // Chiamata REST API songkick per info eventi (concerti)
   var options={
@@ -164,10 +170,11 @@ app.get('/concerti',function(req,res){
     else{
       var array_concerti=infojson2.resultsPage.results.event;
       var concerti=ListaConcerti(array_concerti);
+      concerts=concerti;
 
       // Rindirizzo a concerti.ejs dove passo la lista dei concerti
       // artista, e il nickname dell'utente loggato tramite spotify
-      res.render('concerti',{evento:concerti,name:nickname,artista:art});
+      res.render('concerti',{evento:concerts,name:nickname,artista:nome_artista});
     }
   })
 });
@@ -181,7 +188,7 @@ function ListaConcerti(concertItems){
       tipoEvento: tmp.type,
       luogo: tmp.location.city,
       data: tmp.start.date,
-      nomePosto: tmp.displayName
+      posto: tmp.venue.displayName
     }
 
 
@@ -189,5 +196,34 @@ function ListaConcerti(concertItems){
   return list_concert;
 }
 
+app.get('/mappe',function (req,res) {
+  var place=req.query.q;
+  var nome_luogo=req.query.e;
+  var data_evento=req.query.d;
+  var nome_artista=req.query.a;
+  var stato_nazione=req.query.n;
+  var info_concerto={
+    data: data_evento,
+    luogo: nome_luogo,
+    artista: nome_artista,
+    stato: stato_nazione
+  }
+  geocodingClient.forwardGeocode({
+    query: place,
+    limit: 1
+  }).send().then(response => {
+    const match = response.body;
+    var coordinate=PrendiCoordinate(match.features[0].center);
+    res.render('mappe',{evento_concerto:info_concerto,maps:coordinate});
+  });
+})
+
+function PrendiCoordinate(mappe){
+  var latelong={
+    lat:mappe[0],
+    long:mappe[1]
+  }
+  return latelong;
+}
 console.log('Listening on 8888');
 app.listen(8888);

@@ -39,3 +39,4 @@ services:
     expose:
       - 2000
     command: "npm run server2"
+  

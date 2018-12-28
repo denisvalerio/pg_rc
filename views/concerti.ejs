@@ -23,8 +23,10 @@
 
           <% evento.forEach(function(lista_eventi) { %>
             <div class="col-lg-4 col-sm-7">
-              <h3 style="margin-bottom: 0; color:#2ecc71;"><img src="https://img.icons8.com/ios/33/2ecc71/place-marker.png">&ensp;<b><%= lista_eventi.luogo %></b></h3>  <h4 style="color:#3498db; margin-bottom: 0;"><img src="https://img.icons8.com/ios/25/3498db/calendar.png">&ensp;<b> <%= lista_eventi.data %></b></h4> <h3><small style="color:#FFFFFF"> <b><%= lista_eventi.nomePosto %></b> </small></h3>
-              </div>
+              <h3 style="margin-bottom: 0; color:#2ecc71;"><img src="https://img.icons8.com/ios/33/2ecc71/place-marker.png">&ensp;<b><%= lista_eventi.luogo %></b></h3>  <h4 style="color:#3498db; margin-bottom: 0;"><img src="https://img.icons8.com/ios/25/3498db/calendar.png">&ensp;<b> <%= lista_eventi.data %></b></h4> <h4> <b><%= lista_eventi.posto %></b></h4>
+              <a id="#coordinate" href="http://localhost:8888/mappe?q=<%= lista_eventi.posto%>&e=<%= lista_eventi.posto %>&d=<%= lista_eventi.data %>&a=<%= artista%>&n=<%= lista_eventi.luogo %>">Mappe</a>
+
+            </div>
           <% }); %>
 
       </div>
