@@ -23,9 +23,9 @@
 
           <% evento.forEach(function(lista_eventi) { %>
             <div class="col-lg-4 col-sm-7">
-              <a id="#coordinate" href="http://localhost:8888/mappe?q=<%= lista_eventi.posto%>&e=<%= lista_eventi.posto %>&d=<%= lista_eventi.data %>&a=<%= artista%>&n=<%= lista_eventi.luogo %>" style="margin-bottom: 0; color: #2ecc71; font-size: 175%;"><img src="https://img.icons8.com/ios/33/2ecc71/place-marker.png">&ensp;<b><%= lista_eventi.luogo %></b></a>
+              <h2 style="margin-bottom: 0; color: #2ecc71; font-size: 175%;"><img src="https://img.icons8.com/ios/31/2ecc71/place-marker.png">&ensp;<b><%= lista_eventi.luogo %></b></h2>
               <h4 style="color:#3498db; margin-bottom: 0;"><img src="https://img.icons8.com/ios/25/3498db/calendar.png">&ensp;<b> <%= lista_eventi.data %></b></h4> 
-              <h4 style="color:#FFFFFF"> <b><%= lista_eventi.posto %></b></h4>
+              <h4><a id="#coordinate" href="http://localhost:8888/mappe?q=<%= lista_eventi.posto%>&e=<%= lista_eventi.posto %>&d=<%= lista_eventi.data %>&a=<%= artista%>&n=<%= lista_eventi.luogo %>" style="color:#FFFFFF"><img src="https://img.icons8.com/ios/28/FFFFFF/google-maps.png"> <b><%= lista_eventi.posto %></b></a></h4>
 
             </div>
           <% }); %>

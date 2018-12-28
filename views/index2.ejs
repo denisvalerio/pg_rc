@@ -42,17 +42,17 @@
                 <br>
               <% var imageUrl = lista.immagine.url %>
               <img src="<%= imageUrl %>"/>
-              <h3> <%= lista.nomeCanzone %> </h3> <h4> <i> <strong>  <%= lista.artista %> </strong></i> </h4> <h5> <%= lista.album %> </h5>
+              <h4> <strong><%= lista.nomeCanzone %></strong> </h4> <h4> <i> <strong> <%= lista.artista %></strong></i> </h4> <h5> <%= lista.album %> </h5>
                 <% var Prev = lista.preview %>
                 <audio controls style="margin-bottom:5%" >
                   <source  src="<%= Prev %>"  >
                 </audio>
-                <div><h3>Link Spotify</h3><a href="http://www.animatedimages.org/cat-arrows-111.htm"><img src="http://www.animatedimages.org/data/media/111/animated-arrow-image-0311.gif" border="0" alt="animated-arrow-image-0311" /></a></div>
+                <div><h3>Link Spotify</h3><a href="http://www.animatedimages.org/cat-arrows-111.htm" ><img src="http://www.animatedimages.org/data/media/111/animated-arrow-image-0311.gif" border="0" alt="animated-arrow-image-0311"/></a></div>
                 <% var link= lista.linkSpotify %>
-                <br><a href="<%=link %>"> <%=link %> </a>
+                <br><a href="<%=link %>" style="color: #2ecc71"> <%=link %> </a>
                 <hr>
                 <!-- Rimanda alla pagina dei concerti -->
-                 <a type="button" class="btn btn-primary" href="http:///localhost:8888/concerti?q=<%= lista.artista %>">Cerca concerti artista</a>
+                 <a type="button" class="btn btn-primary" href="http:///localhost:8888/concerti?q=<%= lista.artista %>"><strong>Cerca concerti artista</strong></a>
                 <hr>
 
               </div>
