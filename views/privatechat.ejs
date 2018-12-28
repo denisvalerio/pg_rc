@@ -15,6 +15,7 @@
 		background-color: #333;
 		height: 90%;
 	}
+	
 		.hide-this{
 			display:none;
 		}
@@ -23,7 +24,7 @@
 			background-color: #333;
 		}
 		#chat_window{
-			border: 5px solid #000;
+			border: 3px solid #000;
 			background-color: grey;
 	    	height: 100%;
 			width: 90%;
@@ -66,8 +67,8 @@
 	    	word-wrap: break-word;
 		}
 		.btn-circle.btn-xl {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
 	margin-left: 10px;
 	margin-top: -5px;
   padding: 5px 10px;
@@ -86,7 +87,7 @@
 	</div>
 
 	<!--Chat privata dove occorre specificare il destinatario del messggio da digitare -->
-	<form id="chat_container" class="hide-this" style="margin-top:0;">
+	<form id="chat_container" class="hide-this" style="margin-top:0; ">
 		<h3 id="current_user"></h3>
 		<div id="chat_window" style="margin: 0; overflow-y: scroll; margin-left: 5%;padding: 10px 20px 10px 20px;"></div>
 		<div>
@@ -98,7 +99,7 @@
 			<h4 class="text-center" style="color:white;" >Inserisci il messaggio</h4>
 			<div class="input-group" style="width:100%;">
 				<input type="text" id="msg" class="form-control" placeholder="Scrivi messaggio qui"/>
-				<button type="submit" class="btn btn-primary btn-circle btn-xl" id="send_msg"><img style="width:75%; margin-bottom:5px;"src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANgSURBVGhD1dlLqA5hHMfx4xJC7hJZiBWlKDu5JJcs3MoGKwtiyUJy38hWVqSkyErYWQgll1wi1xBZkFxzKeTu+3vPefKY85/bM/Mc7/urT+fMNO95nnln/jP/mdPWwhmEnXiJ5VrRaumFdXiN3x22oGXSHfrmn8DtgDMdLZF5uI7kDsgX9EZTZzJOwdoB5yyaNmNxBL9gTd63DU2XYdiNr7AmbWmq+uiLzXgPa7JpmqY+emI1nsOaaJ6mqI8luAdrgkX91/qYiouwJlbWf6mPCTgOa0Ihurw+RmE/vsOaUKguqw/X1H2GNZGqoteH1dTFEK0+spq6ukWrj7lIa+qK0uReJNalqb0+ijR1RTzFDhTpraS2+ijT1OU5j0l45a3LU7k+Qpq6LPugc73MUdUp2AdBCW3q0uiLWANlA6xt0gTVR9WmzqKCVpuiTEHZo1u6Pupo6pKuYjSU/ngIa7ssheujzqbOdwj+uX0Q1nZZCtVH3U2d8wPr4WcZrG3zZNbHSMRo6uQt5sDPGIReNDLr4xGsD1V1G+PgRxePS7C2LyKzPnbhI6wPhjoGFXMy6oat7YsoVB/aYDFUkO9g/aEidKfX4e+GZGZC9WJ9rojS9w+14fNxAG9g/VHLByyClSFQP2V9rqhK/ZXO6dnYC731tgaQBxiPtNRxNazt+aMHZmAPnsENcBJ6GkyLWhF/QiEq9VdZ0UPUHWiQrCOhe9MnJCdWVtTnc/cQNLix1Dn6Bm8iOakQtT1/JKPa+Qkd8rSoRbcmFUKndJToFY8GeNxY6pyNSE4mVLT6UNR+a5ALjaV/swK6n+ie4V8UQkWtjwXQIEcbS38zC+75Yi3UsuvS7E+srGj1oayCBtGl2GUiXDOotsdFp+F9+JMrI1p9KNuhQTY1ltq/eXfnPoxki6IOO+QhLWp9KLrTa6CVGIhbHcunoRbHygjchT/RPFHrQzkBDaRa0eT1u3ZGO5WV4XA7XUTU+lCuQANd6/ip08o9i+dFr5RuwJ9wmqj1ofidrApchV4mQ5H3ijV6faiQv0GDqY+ahpCotXFH1BK9PvTkp4F0w1uoFRWirvkykjsh0etD0VuRpe2/Vo4uENbrp+j1ESMDoJfZbiei10fM6JQ9B+3IGa1o5fTDVuj/LiXS1vYH/ajgaUkW/esAAAAASUVORK5CYII="></button>
+				<button type="submit" class="btn btn-primary btn-circle btn-xl" id="send_msg" ><img style="width:75%; margin-bottom:5px;"src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANgSURBVGhD1dlLqA5hHMfx4xJC7hJZiBWlKDu5JJcs3MoGKwtiyUJy38hWVqSkyErYWQgll1wi1xBZkFxzKeTu+3vPefKY85/bM/Mc7/urT+fMNO95nnln/jP/mdPWwhmEnXiJ5VrRaumFdXiN3x22oGXSHfrmn8DtgDMdLZF5uI7kDsgX9EZTZzJOwdoB5yyaNmNxBL9gTd63DU2XYdiNr7AmbWmq+uiLzXgPa7JpmqY+emI1nsOaaJ6mqI8luAdrgkX91/qYiouwJlbWf6mPCTgOa0Ihurw+RmE/vsOaUKguqw/X1H2GNZGqoteH1dTFEK0+spq6ukWrj7lIa+qK0uReJNalqb0+ijR1RTzFDhTpraS2+ijT1OU5j0l45a3LU7k+Qpq6LPugc73MUdUp2AdBCW3q0uiLWANlA6xt0gTVR9WmzqKCVpuiTEHZo1u6Pupo6pKuYjSU/ngIa7ssheujzqbOdwj+uX0Q1nZZCtVH3U2d8wPr4WcZrG3zZNbHSMRo6uQt5sDPGIReNDLr4xGsD1V1G+PgRxePS7C2LyKzPnbhI6wPhjoGFXMy6oat7YsoVB/aYDFUkO9g/aEidKfX4e+GZGZC9WJ9rojS9w+14fNxAG9g/VHLByyClSFQP2V9rqhK/ZXO6dnYC731tgaQBxiPtNRxNazt+aMHZmAPnsENcBJ6GkyLWhF/QiEq9VdZ0UPUHWiQrCOhe9MnJCdWVtTnc/cQNLix1Dn6Bm8iOakQtT1/JKPa+Qkd8rSoRbcmFUKndJToFY8GeNxY6pyNSE4mVLT6UNR+a5ALjaV/swK6n+ie4V8UQkWtjwXQIEcbS38zC+75Yi3UsuvS7E+srGj1oayCBtGl2GUiXDOotsdFp+F9+JMrI1p9KNuhQTY1ltq/eXfnPoxki6IOO+QhLWp9KLrTa6CVGIhbHcunoRbHygjchT/RPFHrQzkBDaRa0eT1u3ZGO5WV4XA7XUTU+lCuQANd6/ip08o9i+dFr5RuwJ9wmqj1ofidrApchV4mQ5H3ijV6faiQv0GDqY+ahpCotXFH1BK9PvTkp4F0w1uoFRWirvkykjsh0etD0VuRpe2/Vo4uENbrp+j1ESMDoJfZbiei10fM6JQ9B+3IGa1o5fTDVuj/LiXS1vYH/ajgaUkW/esAAAAASUVORK5CYII="></button>
 			</div>
 
 		</div>
