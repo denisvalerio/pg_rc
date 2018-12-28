@@ -85,7 +85,7 @@ app.get('/callback', function(req, res){
             var me=JSON.parse(body);
             //console.log(me);
             nickname=me.display_name;
-            console.log(nickname);
+
 
         });
         //rindirizzo pagina "ricerca"
@@ -119,11 +119,12 @@ app.get('/api',function(req,res){
   request(options,function(error,response,body){
     //prendo file json che ricevo dalla chiamata rest API
     var infojson=JSON.parse(body);
+    console.log(infojson);
     if(infojson=="undefined"){
-      res.render('index3');
+      res.render('404traccia');
     }
-    if(infojson.tracks.items==undefined){
-      res.render('index3');
+    if(infojson.tracks.items==""){
+      res.render('404traccia');
     }
     var array_tracks=infojson.tracks.items;
     var data=ListaTracks(array_tracks);
@@ -165,7 +166,7 @@ app.get('/concerti',function(req,res){
 
     // Non ci sono attualmente concerti per quell'artista
     if(infojson2.resultsPage.results.event==undefined){
-
+      res.render('404canzoni')
     }
     else{
       var array_concerti=infojson2.resultsPage.results.event;
