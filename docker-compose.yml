@@ -7,7 +7,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - /home/sveva/Desktop/University/RC/progetto/prova_docker:/home/node/app
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
     ports:
       - "8888:8888"
     expose:
@@ -20,7 +20,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - /home/sveva/Desktop/University/RC/progetto/prova_docker:/home/node/app
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
     ports:
       - "3230:3230"
     expose:
@@ -33,7 +33,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - /home/sveva/Desktop/University/RC/progetto/prova_docker:/home/node/app
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
     ports:
       - "2000:2000"
     expose:

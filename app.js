@@ -114,7 +114,7 @@ app.get('/api',function(req,res){
   request(options,function(error,response,body){
     //prendo file json che ricevo dalla chiamata rest API
     var infojson=JSON.parse(body);
-    if(infojson==undefined){
+    if(infojson=="undefined"){
       res.render('index3');
     }
     if(infojson.tracks.items==undefined){
@@ -157,7 +157,7 @@ app.get('/concerti',function(req,res){
   request(options,function(error,response,body){
     var infojson2=JSON.parse(body);
 
-    // Non ci sono attualmente concerti oer quell'artista
+    // Non ci sono attualmente concerti per quell'artista
     if(infojson2.resultsPage.results.event==undefined){
 
     }
