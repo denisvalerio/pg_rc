@@ -17,7 +17,6 @@ server.listen(port, function () {
 //app.use(express.static(__dirname+'/../app/'));
 
 app.set('view engine','ejs');
-
 // rindirizzo alla chat pubblica
 app.get('/publicchat',function(req,res){
   var username=req.query.q;
