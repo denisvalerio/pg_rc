@@ -119,16 +119,19 @@ app.get('/api',function(req,res){
   request(options,function(error,response,body){
     //prendo file json che ricevo dalla chiamata rest API
     var infojson=JSON.parse(body);
-    
+    console.log(infojson);
+
     if(infojson=="undefined"){
       res.render('404traccia');
     }
-    if(infojson.tracks.items==""){
+    else if(infojson.tracks.items==""){
       res.render('404traccia');
     }
-    var array_tracks=infojson.tracks.items;
-    var data=ListaTracks(array_tracks);
-    res.render('index2',{data: data});
+    else{
+      var array_tracks=infojson.tracks.items;
+      var data=ListaTracks(array_tracks);
+      res.render('index2',{data: data});
+    }
   })
 });
 
