@@ -95,7 +95,10 @@
 
 			<div class="input-group" style="width:100%;">
 				<input type="text" id="to_id" class="form-control"/>
-				<button type="button" class="btn btn-primary btn-circle btn-xl" id="nickname"><img style="width:85%; margin-bottom:5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALfSURBVGhD7dlJyE1hHMfxax6SDEU2EhaKIoWFFQtzUcrCVJKpTAsiWVmIbLBQhg0LQ1EWhhRZkEihbEzJlGFlyDx/f7f31Onc/3uG53nee468v/r0vue85z7v/zz3ufc85zy19rTn/8poHMZz/MI33MU29EdT0rHlp2uW4gf+tNCJRL/La4xF8EzETtzAS0Q9eB+7MRh5Mx4/oYJPYxS6QO+CTvAt9LcX6I0gGYPLiPeW5TNmIk9OQK+5jk7akcg8RO0u1w7fTId6PWo0i45VD89GWtTTOn5dfasx3RENu33a4ZMJKHISScfQFVaGYCh61rca0wO/oXY0nJ3TAXeQLK6oPXDJSkRtzNUO10xGvCBXGh7DUCSLEI2Ee+gM5+hbKFmUq63IEw2zI4he9xTD4ZUriBfj4wKyos/SJUSv0eerL7zzBPFifGh4ZGUZouPXaEeovEO8GB8aIlk5Cx2ri23Q6MqdLMjVQ2Ql+oY8UN8KGE3ckgW50tjPynrswJz6VsAchVWUi0MoLZtgFeVCvV1apsEqykWeqbg67ib2wusCmMwGWEW5mIW06ETjxy9AsNxCvHEfurilZRzixy9GsDxGvHEfmnZkZTseQbe93bQjVM7BKsrFWpQWzUCtoorSLHYQSotuP4/DKi4v3ZPrvqL06GvwA6wi88gz621aTsIqMo+gs1jfTIJVZJb36INK5TysYtNsRuUyEF9hFWy5DetZVSVS5EbrDCqb+DPaLBdR2VgFt0YPLiqZ+bAKbs0njEBlomWDVfgCq+A0rzAVpUbPmPQuhLhvv4oZ0CPYpqUftkC9aRXlQ09JFkJrIG0WXYF34SOsIkJ6hhXwXe1qyBS8gfVP29I1FFnhSs0SJNftmkkdOBJe0bJBtIZXJq3m6rPpFN0T6/7YargMzg/w4guNVfAdA1A4p2A1WKbVKJwHsBor00EUii5IRWayzaJ1/ELphf0VtBHt+QdTq/0FyIGl7NqTFggAAAAASUVORK5CYII="></button>
+				<button type="button" class="btn btn-primary btn-circle btn-xl" id="nickname" data-toggle="tooltip" data-placement="top" title="<%= username %>"><img style="width:85%; margin-bottom:5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALfSURBVGhD7dlJyE1hHMfxax6SDEU2EhaKIoWFFQtzUcrCVJKpTAsiWVmIbLBQhg0LQ1EWhhRZkEihbEzJlGFlyDx/f7f31Onc/3uG53nee468v/r0vue85z7v/zz3ufc85zy19rTn/8poHMZz/MI33MU29EdT0rHlp2uW4gf+tNCJRL/La4xF8EzETtzAS0Q9eB+7MRh5Mx4/oYJPYxS6QO+CTvAt9LcX6I0gGYPLiPeW5TNmIk9OQK+5jk7akcg8RO0u1w7fTId6PWo0i45VD89GWtTTOn5dfasx3RENu33a4ZMJKHISScfQFVaGYCh61rca0wO/oXY0nJ3TAXeQLK6oPXDJSkRtzNUO10xGvCBXGh7DUCSLEI2Ee+gM5+hbKFmUq63IEw2zI4he9xTD4ZUriBfj4wKyos/SJUSv0eerL7zzBPFifGh4ZGUZouPXaEeovEO8GB8aIlk5Cx2ri23Q6MqdLMjVQ2Ql+oY8UN8KGE3ckgW50tjPynrswJz6VsAchVWUi0MoLZtgFeVCvV1apsEqykWeqbg67ib2wusCmMwGWEW5mIW06ETjxy9AsNxCvHEfurilZRzixy9GsDxGvHEfmnZkZTseQbe93bQjVM7BKsrFWpQWzUCtoorSLHYQSotuP4/DKi4v3ZPrvqL06GvwA6wi88gz621aTsIqMo+gs1jfTIJVZJb36INK5TysYtNsRuUyEF9hFWy5DetZVSVS5EbrDCqb+DPaLBdR2VgFt0YPLiqZ+bAKbs0njEBlomWDVfgCq+A0rzAVpUbPmPQuhLhvv4oZ0CPYpqUftkC9aRXlQ09JFkJrIG0WXYF34SOsIkJ6hhXwXe1qyBS8gfVP29I1FFnhSs0SJNftmkkdOBJe0bJBtIZXJq3m6rPpFN0T6/7YargMzg/w4guNVfAdA1A4p2A1WKbVKJwHsBor00EUii5IRWayzaJ1/ELphf0VtBHt+QdTq/0FyIGl7NqTFggAAAAASUVORK5CYII="></button>
+
+
+
 		</div>
 		<div>
 
@@ -114,7 +117,6 @@
 	<script type="text/javascript">
 
 		var socket = io.connect();
-
 	// Nascondo l'input 'Text-id' e mostro la chat
 
     $('#save_id').hide();
@@ -122,10 +124,7 @@
     $('#chat_container').show();
 		$('#current_user').val( $('#id').val() );
 
-		$('#nickname').click(function(){
-			var nick=$('#id').val();
-			alert("Sei loggato come: "+nick);
-		})
+
 	// Invio messaggio privato
 	$('#chat_container').submit(function(e){
 		e.preventDefault()
