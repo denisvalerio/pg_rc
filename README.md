@@ -34,18 +34,23 @@ per organizzarsi per andare insieme al concerto.
 
 # Descrizione Pagine
 
+![Image](img/Mappa.PNG)
+
 **Accesso**
 
 La pagina iniziale mostra il logo dell'applicazione seguito da una breve spiegazione di cosa fa il sito con accenno ai servizi
 principali. Alla fine dell'introduzione c'è il bottone che permette l'accesso a Spotify. Una volta eseguito il login, l'utente
 verrà reindirizzato alla pagina di "Ricerca Canzone".
 
+![Image](img/Login_page.png)
 
 **Ricerca Canzone**
 
 La pagina presenta una semplice barra di ricerca dove andrà inserito il nome della canzone o dell'artista desiderato. Se questi
 ultimi esistono, allora l'utente verrà reindirizzato alla pagina "Ricerca+Risultato", in caso contrario comparirà una pagina 
 "404Traccia" che sta ad indicare che la ricerca eseguita non ha portato ad alcun risultato.
+
+![Image](img/Cerca1.png)
 
 **Ricerca+Risultato**
 
@@ -56,12 +61,16 @@ Inoltre, se disponibile, si potrà ascoltare una preview di 30 secondi della can
 Di seguito si avrà il link a Spotify, che permetterà di ascoltare l'intera canzone sulla piattaforma Spotify.
 Infine si ha il bottone "Cerca Concerti" tramite il quale si viene reindirizzati, se vi sono concerti in programma, alla pagina "Concerti", altrimenti, alla pagina "404Concerti" se la ricerca non ha portato alcun risultato.
 
+![Image](img/Risultati_traccia.png)
+
 **Concerti**
 
 La pagina conterrà una lista di concerti con le relative informazioni riguardanti città e stato, data e luogo del concerto in 
 questione. Cliccando sul luogo è possibile ottenere un popup di una mappa con un segnaposto indicante il luogo dell'evento.
 In cima alla pagina si trovano due bottoni "Public Live Chat" e "Private Live Chat" che rimanderanno rispettivamente alle pagine
 "Chat Pubblica" e "Chat Privata" (cliccando sul bottone della chat pubblica verrò reindirizzato direttamente nella ChatRoom dell'artista).
+
+![Image](img/Risultati_concerti.png)
 
 **Chat Pubblica**
 
@@ -73,6 +82,8 @@ accedere ad una ChatRoom già esistente o crearne una nuova (/join nomechat).
 Se un utente entra o esce da una ChatRoom, la lista delle room viene aggiornata automaticamente (eliminazione ChatRoom, aggiornamento
 numero utenti, alert("nomeutente è entrato nella room", ecc.)
 Se in una chat, fatta accezione per quella aperta di default, non vi sono utenti, questa verrà automaticamente cancellata.
+
+![Image](img/pubblica.png)
 
 **Chat Privata**
 
