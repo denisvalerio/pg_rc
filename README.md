@@ -90,3 +90,5 @@ Se in una chat, fatta accezione per quella aperta di default, non vi sono utenti
 La pagina presenta una ChatBox, una text area dove inserire il nickname della persona con cui si vuole comunicare, un bottone
 identificativo per l'utente loggato, una text area dove inserire il messaggio e il bottone d'invio.
 Per poter comunicare con un altro utente è necessario però che anche quest'ultimo abbia fatto accesso alla chat privata.
+
+![Image](img/privata.png)
