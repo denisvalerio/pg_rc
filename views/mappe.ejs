@@ -42,6 +42,8 @@ map.on('load', function () {
                     "properties": {
                         "description": "<strong><%= evento_concerto.luogo %></strong><p><strong><%= evento_concerto.stato %></strong></p><p> Concerto di <%= evento_concerto.artista%> si terrà il <%= evento_concerto.data%>.</p>",
                         "icon": "music"
+                        
+
                     },
                     "geometry": {
                         "type": "Point",
@@ -52,7 +54,8 @@ map.on('load', function () {
         },
         "layout": {
             "icon-image": "{icon}-15",
-            "icon-allow-overlap": true
+            "icon-allow-overlap": true,
+            
         }
     });
 
