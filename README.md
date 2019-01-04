@@ -44,7 +44,7 @@ verrà reindirizzato alla pagina di "Ricerca Canzone".
 
 ![Image](img/Login_page.png)
 
-**Ricerca Canzone**
+**Ricerca**
 
 La pagina presenta una semplice barra di ricerca dove andrà inserito il nome della canzone o dell'artista desiderato. Se questi
 ultimi esistono, allora l'utente verrà reindirizzato alla pagina "Ricerca+Risultato", in caso contrario comparirà una pagina 
@@ -52,7 +52,7 @@ ultimi esistono, allora l'utente verrà reindirizzato alla pagina "Ricerca+Risul
 
 ![Image](img/Cerca1.png)
 
-**Ricerca+Risultato**
+**Risultato**
 
 La pagina presenterà ancora la barra di ricerca, utilizzabile nel caso in cui l'utente volesse cominciare una nuova ricerca, e 
 tutti i risultati prodotti dalla ricerca precedente.
