@@ -153,6 +153,7 @@ function ListaTracks(songItems) {
 
 // Ricerca concerti in cui uso una get per prendermi l'artista
 app.get('/concerti',function(req,res){
+  console.log(nickname);
   var art=req.query.q;
   nome_artista=art;
 

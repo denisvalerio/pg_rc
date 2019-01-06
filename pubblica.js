@@ -20,13 +20,10 @@ app.set('view engine','ejs');
 // rindirizzo alla chat pubblica
 app.get('/socket.io',function(req,res){
   var username=req.query.q;
-  if(username==""){
-    res.render("404username");
-  }
-  else{
+
   artist_name=req.query.a;
   res.render('publicchat',{username:username});
-  }
+
 
 })
 // Numero totale di utenti nella room
