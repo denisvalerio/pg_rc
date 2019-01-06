@@ -3,14 +3,25 @@ services:
   node1:
     image: "node:8"
     user: "node"
-    working_dir: /home/node/app
+    working_dir: /home/node
     environment:
       - NODE_ENV=production
     volumes:
-      - /Users/Francesco/Desktop/pg_rc:/home/node/app
-    container_name: intro
-    ports:
-      - "8888:8888"
+      - /home/sveva/Desktop/University/RC/progetto/finale:/home/node
+    container_name: homepage1
+    expose:
+      - 8888
+    command: "npm run start"
+
+  node1.1:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /home/sveva/Desktop/University/RC/progetto/finale:/home/node
+    container_name: homepage2
     expose:
       - 8888
     command: "npm run start"
@@ -18,30 +29,61 @@ services:
   node2:
     image: "node:8"
     user: "node"
-    working_dir: /home/node/app
+    working_dir: /home/node
     environment:
       - NODE_ENV=production
     volumes:
-      - /Users/Francesco/Desktop/pg_rc:/home/node/app
-    container_name: pubblica
-    ports:
-      - "3230:3230"
+      - /home/sveva/Desktop/University/RC/progetto/finale:/home/node
+    container_name: chatpubblica1
     expose:
       - 3230
-    command: "npm run server"
-    
+    command: "npm run pubblica"
+
+  node2.2:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /home/sveva/Desktop/University/RC/progetto/finale:/home/node
+    container_name: chatpubblica2
+    expose:
+      - 3230
+    command: "npm run pubblica"
+
   node3:
     image: "node:8"
     user: "node"
-    working_dir: /home/node/app
+    working_dir: /home/node
     environment:
       - NODE_ENV=production
     volumes:
-      - /Users/Francesco/Desktop/pg_rc:/home/node/app
-    container_name: privata
-    ports:
-      - "2000:2000"
+      - /home/sveva/Desktop/University/RC/progetto/finale:/home/node
+    container_name: chatprivata1
     expose:
       - 2000
-    command: "npm run server2"
-  
+    command: "npm run privata"
+
+  node3.3:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /home/sveva/Desktop/University/RC/progetto/finale:/home/node
+    container_name: chatprivata2
+    expose:
+      - 2000
+    command: "npm run privata"
+
+  nginx:
+    image: "nginx"
+    volumes:
+      - /home/sveva/Desktop/University/RC/progetto/finale/nginx.conf:/etc/nginx/nginx.conf
+    container_name: nginx
+    ports:
+      - "8888:8888"
+      - "3230:3230"
+      - "2000:2000"

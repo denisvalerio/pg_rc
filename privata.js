@@ -6,10 +6,10 @@ var io = require('socket.io').listen(server);
 var PORT = process.env.PORT || 2000;
 server.listen(PORT);
 var username="";
-console.log('Server listening at port %d', PORT);
+//console.log('Server listening at port %d', PORT);
 
 app.set('view engine','ejs');
-app.get('/privatechat',function(req,res){
+app.get('/socket.io',function(req,res){
   username=req.query.q;
   console.log(username);
   res.render('privatechat',{username:username});

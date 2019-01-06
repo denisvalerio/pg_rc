@@ -116,7 +116,7 @@
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
 
-		var socket = io.connect();
+		var socket = io({transports: ['websocket']}).connect();
 	// Nascondo l'input 'Text-id' e mostro la chat
 
     $('#save_id').hide();

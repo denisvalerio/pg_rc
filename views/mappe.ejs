@@ -17,15 +17,15 @@
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <body style="background-image: url(https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80); background-repeat:no-repeat; background-size:cover;">
+  <body>
   <div id='map'></div>
   <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3ZldmFzIiwiYSI6ImNqcTZiZG01bTI2a2k0OGxjOWR6bjZlYmEifQ.cv6fWAD7oKn96CJmbJKnhw';
+    mapboxgl.accessToken = '<%= token %>';
     var $mappe=$('map');
     var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-    center: [<%= maps.lat %>,<%= maps.long %>], // starting position [lng, lat]
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [<%= maps.lat %>,<%= maps.long %>],
     zoom: 15 // starting zoom
 });
 map.on('load', function () {
@@ -42,7 +42,7 @@ map.on('load', function () {
                     "properties": {
                         "description": "<strong><%= evento_concerto.luogo %></strong><p><strong><%= evento_concerto.stato %></strong></p><p> Concerto di <%= evento_concerto.artista%> si terrà il <%= evento_concerto.data%>.</p>",
                         "icon": "music"
-                        
+
 
                     },
                     "geometry": {
@@ -55,7 +55,7 @@ map.on('load', function () {
         "layout": {
             "icon-image": "{icon}-15",
             "icon-allow-overlap": true,
-            
+
         }
     });
 

@@ -1,29 +1,27 @@
 {
-  "name": "prova_docker",
+  "name": "share-the-music",
   "version": "1.0.0",
-  "description": "",
+  "description": "Progetto per il corso di Reti di Calcolatori 2018/2019, tenuto dal prof. Andrea Vitaletti presso la Sapienza Università di Roma.",
   "main": "app.js",
   "dependencies": {
+    "concurrently": "^4.1.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "mapbox-gl": "^0.52.0",
     "node-fetch": "^2.3.0",
     "node-spotify-api": "^1.0.7",
     "socket.io": "^2.2.0",
     "spotify-web-api-node": "^4.0.0",
     "ws": "^6.1.2"
   },
-  "devDependencies": {
-    "concurrently": "^4.1.0"
-  },
+  "devDependencies": {},
   "scripts": {
-
     "start": "node app.js",
-    "server": "node server.js",
-    "server2": "node server2.js",
-    "dev" : "concurrently --kill-others \"npm run start\" \"npm run server\" \"npm run server2\""
-
+    "pubblica": "node pubblica.js",
+    "privata": "node privata.js",
+    "dev": "concurrently --kill-others \"npm run start\" \"npm run pubblica\" \"npm run privata\""
   },
   "repository": {
     "type": "git",

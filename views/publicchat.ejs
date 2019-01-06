@@ -5,7 +5,6 @@
 <head>
   <meta charset='UTF-8'>
   <title>Chat concerti</title>
-  <link href='./style.css' rel='stylesheet' >
 
   <script src="https://use.typekit.net/ama5eep.js"></script>
 
@@ -21,7 +20,7 @@
 
   <script src='/socket.io/socket.io.js'></script>
 
-  <script src='main.js'></script>
+
   <style media="screen">
 
   * {
@@ -112,7 +111,7 @@
   .messages {
     font-size: 120%;
     color: white;
-    
+
   }
 
   .inputMessage {
@@ -307,7 +306,7 @@
 
   </style>
 </head>
-<!-- CHAT PRIVATA  -->
+<!-- CHAT PUBBLICA  -->
 <body>
 <!-- Utilizzato per settare il nickname dell utente autenticato. (non visibile all utente)-->
   <ul class='pages' id='all-page'>
@@ -330,16 +329,13 @@
 
         </div>
       </div>
-      
+
       <input class='inputMessage' placeholder='Scrivi qualcosa...'/>
       </li>
-      
+
 
     <li class='login page' id='login-page'>
-form{
-			list-style: none;
-	    word-wrap: break-word;
-		}
+
           <input class='usernameInput' type='text' minlength='1' maxlength='14'
                  value="<%= username %>" autofocus readonly/>
     </li>
@@ -388,7 +384,7 @@ form{
     var $roomDiv;
     var roomNameRule = /^(?!\s*$)[a-zA-Z0-9_\u4e00-\u9fa5 \f\n\r\t\v]{1,14}$/;
 
-    var socket = io();
+    var socket = io({transports: ['websocket']});
 
     function addParticipantsMessage (data) {
       var message;
@@ -623,8 +619,16 @@ form{
           sendMessage();
           socket.emit('stop typing');
           typing = false;
-        } else {
-          setUsername();
+        } else{
+          username = cleanInput($usernameInput.val().trim());
+            $loginPage.hide();
+            $chatPage.show();
+            $roomPage.fadeIn();
+            $loginPage.off();
+            //$currentInput = $inputMessage.focus();
+
+            // Dico al server di aggiungere username
+            socket.emit('add user', username);
         }
       }
     });
