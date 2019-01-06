@@ -115,7 +115,6 @@ app.get('/api',function(req,res){
   request(options,function(error,response,body){
     //prendo file json che ricevo dalla chiamata rest API
     var infojson=JSON.parse(body);
-    console.log(infojson);
 
     if(infojson=="undefined"){
       res.render('404');
@@ -154,7 +153,6 @@ function ListaTracks(songItems) {
 
 // Ricerca concerti in cui uso una get per prendermi l'artista
 app.get('/concerti',function(req,res){
-  console.log(nickname);
   var art=req.query.q;
   nome_artista=art;
 

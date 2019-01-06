@@ -23,8 +23,10 @@ app.get('/socket.io',function(req,res){
   if(username==""){
     res.render("404username");
   }
+  else{
   artist_name=req.query.a;
   res.render('publicchat',{username:username});
+  }
 
 })
 // Numero totale di utenti nella room
